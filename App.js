@@ -15,6 +15,7 @@ import {
 export default class App extends React.Component {
   componentDidMount() { //for changes in orientation
     lor(this);
+    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.ALL);
   }
 
   componentWillUnmount() { //for changes in orientation
@@ -25,7 +26,8 @@ export default class App extends React.Component {
     this.state = {
       happy: 50, //best 100
       hungry: 50, //best 0
-      sick: 50, //best 0
+      sick: 50, //best 
+      
     }
   }
   stateChange = (type) => { //change state of Jibo
@@ -36,11 +38,11 @@ export default class App extends React.Component {
       default: console.log("IT SHOULDNT GET HERE")
     }
   }
-  async componentDidMount() { //for it to be in landscape mode
-    // console.log("app mounted")
-    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.ALL);
-    // console.log('App:',wp(100), hp(100))
-  }
+  // async componentDidMount() { //for it to be in landscape mode
+  //   // console.log("app mounted")
+  //   ScreenOrientation.allowAsync(ScreenOrientation.Orientation.ALL);
+  //   // console.log('App:',wp(100), hp(100))
+  // }
   render() {
     // console.log("rendered App")
     // return <Choices />

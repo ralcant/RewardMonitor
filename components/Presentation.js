@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, Image, Dimensions, Animated, Modal, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, Image, Dimensions, Animated, Modal, Alert,  TouchableOpacity } from 'react-native';
 import {Coin} from "./Coin.js"
 // import Draggable from 'react-native-draggable';
 import {Choice} from './Choice.js'
@@ -112,8 +112,10 @@ export class Presentation extends React.Component {
         <View style = {styles.coins}>
           {/* <Draggable  x = {wp(50)} y ={hp(50)} style = {{position:"absolute"}}/>
           <Draggable/> */}
-          <Coin usedCoin = {this.usedCoin} stateChange = {this.stateChange} position = {COINS.coin_1} RADIUS ={RADIUS}/>
-          <Coin usedCoin = {this.usedCoin} stateChange ={this.stateChange} position = {COINS.coin_2} RADIUS = {RADIUS}/>
+            <Coin usedCoin = {this.usedCoin} stateChange = {this.stateChange} position = {COINS.coin_1} RADIUS ={RADIUS}/>
+            <Coin usedCoin = {this.usedCoin} stateChange ={this.stateChange} position = {COINS.coin_2} RADIUS = {RADIUS}/>
+          {/* <Coin usedCoin = {this.usedCoin} stateChange = {this.stateChange} position = {COINS.coin_1} RADIUS ={RADIUS}/>
+          <Coin usedCoin = {this.usedCoin} stateChange ={this.stateChange} position = {COINS.coin_2} RADIUS = {RADIUS}/> */}
         </View>
         <View style = {styles.choice_container}>
           <Choice image = {require("../assets/watermelon.jpg")} hope = {[CONSTANTS.food, styles.choice]}/>
