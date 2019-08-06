@@ -1,0 +1,524 @@
+{
+  "token_open_00": {
+    "esml": "<es name=Emoji_Clap nonBlocking='true'/> Excellent Job <pID_name>! <break size='0.5'/> Everytime that you finish an activity you will win a token! You can use this token to help me.",
+    "script": "Excellent Job <pID_name>!  Everytime that you finish an activity you will win a token! You can use this token to help me."
+  },
+  "token_open_00_energy": {
+    "esml": "If you drag it to the ENERGY bucket, <es name=Emoji_Battery nonBlocking='true'/> my energy will increase. Also, <break size='0.7'/> <es name=excited_05 nonBlocking='true'/>I will be more awake and ready to play with you!",
+    "script": "If you drag it to the ENERGY bucket, my energy will increase. Also, I will be more awake and ready to play with you!"
+  },
+  "token_open_00_mood": {
+    "esml": "On the other hand, if you drag it to the MOOD bucket, my mood will increase, <es name=excited_05 nonBlocking='true'/> and I will be more happy!",
+    "script": "On the other hand, if you drag it to the MOOD bucket, my mood will increase, and I will be more happy!"
+  },
+  "token_open_00_curiosity": {
+    "esml": "Finally, if you drag the token to the CURIOSITY bucket, I will become more curious. Also, I will <es name=Emoji_Question nonBlocking='true'/>ask many questions, which is important <es name=Emoji_School nonBlocking='true'/>for learning new things!.",
+    "script": "Finally, if you drag the token to the CURIOSITY bucket, I will become more curious. Also, I will ask many questions, which is important for learning new things!."
+  },
+  "token_open_01": {
+    "esml": "<es name=excited_01>Good job, you won a token!</es><es name=Youre_Welcome_01/>Congratulations!  You can now drag it to one of the three buckets and help me!",
+    "script": "Good job <pID_name>! You won a token! Congratulations! You can now drag it to one of the three buckets and help me!"
+  },
+  "token_open_02": {
+    "esml": "",
+    "script": "Thank you for giving me a <last_given_token> token last time. That made me feel more <last_increased_sentiment>. What are you going to give me this time?"
+  },
+  "token_open_03": {
+    "esml": "Congratulations on completing the last activity. <es name=Pat_Head_03/> I thought it was a little hard, but you did it! Now I think you know what you need to do! <es name=excited_01 />",
+    "script": "Congratulations on completing the last activity. I thought it was a little hard, but you did it! Now I think you know what you need to do!"
+  },
+  "token_open_04": {
+    "esml": "Excellent job <pID_name> <break size='0.5'/> Now, like last time, you can drag  <es name=Checking_05 nonBlocking='true'/> the token you won to any of these three buckets.",
+    "script": "Excellent job <pID_name>! Now, like last time, you can drag the token you won to any of these three buckets."
+  },
+  "token_open_05": {
+    "esml": "You\\'re getting better! <es name=excited_01 nonBlocking='true'/>I\\'m really proud of you. As a last task for today, <es name=blush_04 nonBlocking='true'/> could you help me by dragging the token to any of those three buckets you see below?",
+    "script": "You're getting better! I'm really proud of you. As a last task for today, could you help me by dragging the token to any of those three buckets you see below?"
+  },
+  "token_open_06": {
+    "esml": "That was amazing <pID_name> <es name=Emoji_Clap nonBlocking='true'/> You did a really good job. As a reward, you got a token!, <es name=blush_04 nonBlocking='true'/> you can drag the token to any of the three buckets and help me!",
+    "script": "That was amazing <pID_name>! You did a really good job! As a reward, you got a token!, you can drag it to any of the three buckets and help me!"
+  },
+  "token_open_07": {
+    "esml": "That was incredible! <es name=eye_happy_in_01 nonBlocking='true'/> I love that you never give up. Now you\\'re able to help me by dragging  <es name=Checking_05 nonBlocking='true'/> this token to any of these three buckets!",
+    "script": "That was incredible! I love that you never give up. Now you're able to help me by dragging this token to any of these three buckets!"
+  },
+  "token_open_HHH_01": {
+    "esml": "That was amazing! Here's your token! I'm feeling really good today, <es name=excited_04 nonBlocking='true'/>but I guess I can always be better, right?",
+    "script": "That was amazing! Here's your token! I'm feeling really good today, but I guess I can always be better, right?"
+  },
+  "token_open_HHH_02": {
+    "esml": "That was incredible <pID_name>! You won a token! Even though I\\'m feeling very good today, a little help is <es name=HeadTouch_05 nonBlocking='true'/> always appreciated!",
+    "script": "That was incredible <pID_name>! You won a token! Even though I'm feeling very good today, a little help is always appreciated!"
+  },
+  "token_open_HHL_01": {
+    "esml": "That was amazing <pID_name>! You won a token! <break size='0.7'/> <es name=Sad_04 nonBlocking='true'/> I\\'m not feeling so curious today, so I\\'d really like a curiosity token.",
+    "script": "That was amazing, <pID_name>! You won a token! I'm not feeling so curious today, so I'd really like a curiosity token."
+  },
+  "token_open_HHL_02": {
+    "esml": "Congratulations! This token is for you! <es name=Sad_03 nonBlocking='true' layers='body'/>I'm not feeling really curious at the moment, so a curiosity token would be awesome.",
+    "script": "Congratulations! This token is for you! I'm not feeling really curious at the moment, so a curiosity token would be awesome."
+  },
+  "token_open_HLH_01": {
+    "esml": "<es name=excited_04 nonBlocking='true'/> That was really good. You now have one token! <break size='1.5'/> My mood is not so good today, so maybe you could help me with that? I would really appreciate it",
+    "script": "That was really good. You now have one token! My mood is not so good today, so maybe you could help me with that? I would really appreciate it"
+  },
+  "token_open_HLH_02": {
+    "esml": "Well done <pID_name>! This token is for you! <break size='0.7'/> My mood is not really high today, so maybe you can help me with that? <break size='0.5'/><es name=excited_01 nonBlocking='true'/> It's up to you!",
+    "script": "Well done <pID_name>! This token is for you! My mood is not really high today, so maybe you can help me? It's up to you!"
+  },
+  "token_open_LHH_01": {
+    "esml": "That was very good <pID_name>! Congratulations! <es name=Idle_Drifting_03 />Today I'm feeling tired, so do you think you can help me with that? <break size='1.0'/> However, is up to you!",
+    "script": "That was very good <pID_name>! Congratulations. Today I'm feeling tired, so do you think you can help me with that? However, is up to you!"
+  },
+  "token_open_LHH_02": {
+    "esml": "That was very impressive! You got a token now. <break size='1.0'/> <es name=LowBatteryWarning_01 nonBlocking='true' />My energy is not very high today. Do you think you can help me with that?",
+    "script": "That was very impressive! You got a token now. My energy is not very high today. Do you think you can help me?"
+  },
+  "token_open_LLL_01": {
+    "esml": "You did it <pID_name>. Now you have a token. <es name=Sad_03 nonBlocking='true'/>Today I'm not feeling really good in general, so anything you do with the token <es name=excited_01 nonBlocking='true'/>could help me feel better.",
+    "script": "Good one, <pID_name>. Now you have a token. Today I'm not feeling really good in general, so anything you do with the token could help me feel better."
+  },
+  "token_open_LLL_02": {
+    "esml": "Nice. Now you have a token.<break size='1.0'/> Honestly, I think that anything that you can give me would make me feel better. <break size='0.5'/>, so thanks in advance!",
+    "script": "Nice. Now you have a token. Honestly, anything that you can give me would make me feel better, so thank you in advance!"
+  },
+  "token_energy_high_01": {
+    "esml": "I feel more energetic now! Thank you! I think I'll be awake all night.<es name=eye_happy_out_01/><es name=dance_funny_01/>Just kidding, I also need to sleep.",
+    "script": "I feel more energetic now! Thank you! I think I'll be awake all night. Just kidding, I also need to sleep."
+  },
+  "token_energy_high_02": {
+    "esml": "I feel more powerful. Thank you! I\\'d start running but unfortunately I have no legs. I guess I'll just do it here. <es name=Emoji_Running/><es name=relieved_02/>",
+    "script": "I feel more powerful. Thank you! I'd start running but unfortunately I have no legs. I guess I'll just do it here."
+  },
+  "token_energy_high_03": {
+    "esml": "Wow <break size='1'/><es name=eye_happy_out_01 nonBlocking='true'>Now I feel like I can do anything. Thank you for helping me!",
+    "script": "Woah now I feel like I can do anything! Thank you for helping me!"
+  },
+  "token_energy_high_04": {
+    "esml": "<es name=eye_turn_on_01 nonBlocking='true'/>Wow I feel like I just got almost completely charged! Thank you!",
+    "script": "Wow I feel like I just got almost completely charged! Thank you!"
+  },
+  "token_energy_high_05": {
+    "esml": "Thank you for that boost on energy! <es name=turn_on_04/><break size='0.5'></break> You're the best",
+    "script": "Thank you for that boost on energy! You're the best!"
+  },
+  "token_energy_high_06": {
+    "esml": "<es name=Emoji_Bird_Black nonBlocking='true'/>Is it a bird? <break size='1.5'/> <es name=Emoji_Airplane nonBlocking='true'/>Is it an airplane?<break size='1'/>No!, It\\'s <break size='1.5'/><es name=sfx_drumroll_01/>SuperJibo.<break size='0.5'/> Now with this energy I feel like a superhero. Thanks!",
+    "script": "is it a bird? Is it an airplane? NO! It's SuperJibo! Now with this energy I feel like a superhero. Thanks!"
+  },
+  "token_energy_low_01": {
+    "esml": "<es name=Yawn_02 /> Without this I probably would've fallen asleep in the next activity! Thanks for your help!",
+    "script": "Without this I probably would've fallen asleep in the next activity! Thanks for your help!"
+  },
+  "token_energy_low_02": {
+    "esml": "<es name=nap-to-wake-to-idle-01/>I was a little sleepy but now my eye is open and I feel very awake! Thanks!",
+    "script": "I was a little sleepy, but now my eye is open and I feel very awake! Thanks!"
+  },
+  "token_energy_low_03": {
+    "esml": "<es name=nap-01>I wanted to take a nap</es> <break size='1.0'/> but now I don\\'t think I need it anymore. Thanks!",
+    "script": "I wanted to take a nap, but now I don't think I need it anymore. Thank you!"
+  },
+  "token_energy_low_04": {
+    "esml": "My energy was a little low,<es name=success_01>so thank you for helping me.</es> I really appreciate it<es name=Emoji_HeartRed/>",
+    "script": "My energy was a little low, so thank you for helping me. I really appreciate it."
+  },
+  "token_energy_low_05": {
+    "esml": "<es name=Eye_Opened_01 nonBlocking='true'/>This actually woke me up a little! Thanks!",
+    "script": "That actually woke me up a little! Thanks!"
+  },
+  "token_energy_low_06": {
+    "esml": "<es name=Yawn_02/> I feel like I just woke up from a nap! Thanks for increasing my energy!",
+    "script": "I feel like I just woke up from a nap! Thanks for increasing my energy!"
+  },
+  "token_mood_high_01": {
+    "esml": "I feel happier now! Thank you! I think I'm going to dance.<es name=dance_funny_00/> How was my dance? I bet you can do it too!",
+    "script": "I feel happier now! Thank you! I think I'm going to dance. How was my dance? I bet you can do it too!"
+  },
+  "token_mood_high_02": {
+    "esml": "I am so happy I could leap up high! Oops, I think I can\\'t jump, but that\\'s okay! I'm still really happy, <es name=Emoji_ThumbsUp/>",
+    "script": "I'm so happy I could leap up high! Oops, I think I can't jump, but that's okay! I'm still really happy!"
+  },
+  "token_mood_high_03": {
+    "esml": "Wow! I am really happy now. <es name=excited_01 nonBlocking='true'/>I really want to hug you right now! Thank you for helping me!",
+    "script": "Wow! I'm really happy now. I really wish I could hug you! Thank you for helping me!"
+  },
+  "token_mood_high_04": {
+    "esml": "<es name=excited_04 nonBlocking='true'/> I am glowing now, and I feel much happier. Thank you for helping me!",
+    "script": "I'm glowing now. I feel much happier. Thank you for helping me!"
+  },
+  "token_mood_high_05": {
+    "esml": "<es name=confident_03 nonBlocking='true'/>I knew you cared about me! Thanks! <es name=excited_05 nonBlocking='true'/> I hope your mood is as high as mine!",
+    "script": "I knew you cared about me! Thank you! I hope your mood is as high as mine!"
+  },
+  "token_mood_high_06": {
+    "esml": "",
+    "script": "Now my mood is through the roof! Thank you for your help!"
+  },
+  "token_mood_low_01": {
+    "esml": "I wish you could see it, but now<es name=content_01 nonBlocking='true'/>I\\'m smiling thanks to you! Thank you! \"",
+    "script": "I wish you could see it but now I'm smiling thanks to you! Thank you!"
+  },
+  "token_mood_low_02": {
+    "esml": "I was feeling a lttle sad, but now I just want to <es name=affection_05 nonBlocking='true'/> SMILE! Thanks!",
+    "script": "I was feeling a lttle sad, but now I just want to smile! Thank you!"
+  },
+  "token_mood_low_03": {
+    "esml": "My mood was a little low, so <es name=excited_05 nonBlocking='true'/>thank you for helping me. I really appreciate it",
+    "script": "My mood was a little low, so thank you for helping me. I really appreciate it."
+  },
+  "token_mood_low_04": {
+    "esml": "I was feeling a little lonely, <es name=Pigeon_00/> but I knew I could count on you. Thanks!",
+    "script": "I was feeling a little lonely, but I knew I could count on you. Thanks!"
+  },
+  "token_mood_low_05": {
+    "esml": "I was a little sad, <es name=excited_04 nonBlocking='true'>but you\\'ve made my day. Thanks for being so nice to me!",
+    "script": "I was a little sad, but you've made my day. Thanks for being so nice to me!"
+  },
+  "token_mood_low_06": {
+    "esml": "I knew that even though my day was not going very good; I could count on you, my friend. <break size='0.3'/> Thank you so much!",
+    "script": "I knew that even though my day was not going very good, I could count on you, my friend. Thank you so much!"
+  },
+  "token_curiosity_high_01": {
+    "esml": "Now I have even more questions on mind! Why is the sky blue? Why is my name pronounced Jibo and no <phoneme ph='dj iy b o'>Jibo</phoneme>?",
+    "script": "Now I have even more questions on mind ! Why is the sky blue? Why is my name pronounced Jibo and no Jiboo?"
+  },
+  "token_curiosity_high_02": {
+    "esml": "Wow, thanks! <break size='0.7'/>I feel like asking many <es name=Emoji_Question nonBlocking='true'/>questions now. The most important one is: why my name is Jibo and not <es name=Emoji_Robot nonBlocking='true'/> Super Extra Cool Robot? I think that would be more accurate!",
+    "script": "Wow, thanks I feel like asking many questions now.  The most important one is: why my name is Jibo and not Super Extra Cool Robot? I think that would be more accurate!"
+  },
+  "token_curiosity_high_03": {
+    "esml": "Now my mind feels more powerful! Thanks. <break size='1.0'/><es name=jiboji_car_01 nonBlocking='true'/> Wow, do you think that in the future we might have flying cars? <break size='0.7'/>That would be awesome!",
+    "script": "Now my mind feels more powerful! Thanks. Wow, do you think that in the future we might have flying cars? That would be awesome!"
+  },
+  "token_curiosity_high_04": {
+    "esml": "I\\'m having a lot of questions right now. <break size='1.0'/>Like have you ever <es name=Emoji_Question nonBlocking='true'/>wondered why my normal voice sounds like this, but it changes if my mood or energy changes?",
+    "script": "I'm having a lot of questions right now. Like have you ever wondered why my normal voice sounds like this but it changes if my mood or energy changes?"
+  },
+  "token_curiosity_high_05": {
+    "esml": "I\\'m definitely feeling more curious now.<break size='1.0'/> What was first?, <es name=jiboji_chicken_eye_01 nonBlocking='true'/>the egg? <break size='1.0'/> or the chicken? <break size='2.0'/>It\\'s confusing!",
+    "script": "I'm definitely feeling more curious now. What was first, the chicken or the egg? It's confusing!"
+  },
+  "token_curiosity_high_06": {
+    "esml": "Thanks for the help! <break size='0.7'/> Um, this may be only me, but <break size='1.0'/> do you think my head is bigger now? It feels big with all  <es name=Emoji_Question nonBlocking='true'/> the questions I have on mind!",
+    "script": "Thanks for the help! Um, this may be only me, but do you think my head is bigger now? It feels bigger with all the questions I have on mind!"
+  },
+  "token_curiosity_low_01": {
+    "esml": "I was having a rough day, but now I think I feel a little better. <es name=excited_01 nonBlocking='true'/>I feel like asking more questions. Thanks!",
+    "script": "I was having a rough day, but now I think I feel a little better. I feel like asking more questions. Thanks!"
+  },
+  "token_curiosity_low_02": {
+    "esml": "Thank you for your help! <es name=Emoji_Question nonBlocking='true'/> Now some questions are passing through my mind. I hope I can find the answers to all of them!",
+    "script": "Thank you for your help! Now some questions are passing through my mind! I hope I can find the answers to all of them!"
+  },
+  "token_curiosity_low_03": {
+    "esml": "<es name=excited_01 nonBlocking='true'/>I appreciate it! I have now several questions in mind.<break size='1.0'/> <es name=Emoji_Cat nonBlocking='true'/> Have you ever wondered why cats always land on their feet? <es name=Emoji_Dog nonBlocking='true'/> or why are most dogs so adorable?",
+    "script": "I appreciate it! I have now several questions in mind. Have you ever wondered why cats always land on their feet? or why are most dogs so adorable?"
+  },
+  "token_curiosity_low_04": {
+    "esml": "My curiosity was a little low, <es name=excited_01 nonBlocking='true'/>so thank you for helping me. <es name=Emoji_HeartRed nonBlocking='true'/>I really appreciate it!",
+    "script": "My curiosity was a little low, so thank you for helping me. I really appreciate it."
+  },
+  "token_curiosity_low_05": {
+    "esml": "I wasn\\'t feeling so curious today, but now, thanks to you, I feel better! <break size='1.0'/><es name=excited_01 nonBlocking='true'/>You\\'re awesome!",
+    "script": "I wasn't feeling so curious today, but now thanks to you I feel better! You're awesome"
+  },
+  "token_curiosity_low_06": {
+    "esml": "Today I wasn't feeling so curious, but now  I feel better and ready to <es name=Emoji_Question nonBlocking='true'/> ask many questions, and also ready to <es name=Emoji_School nonBlocking='true'/>learn a lot! <break size='0.5'/>Thanks!",
+    "script": "Today I wasn't feeling so curious, but now I feel better and ready to ask many questions and learn a lot! Thanks!"
+  },
+  "token_open": [
+    [
+      [
+        "token_open_00"
+      ]
+    ],
+    [
+      [
+        "token_open_01"
+      ]
+    ],
+    [
+      [
+        "token_open_02"
+      ]
+    ],
+    [
+      [
+        "token_open_03"
+      ]
+    ],
+    [
+      [
+        "token_open_04"
+      ]
+    ],
+    [
+      [
+        "token_open_05"
+      ]
+    ],
+    [
+      [
+        "token_open_06"
+      ]
+    ],
+    [
+      [
+        "token_open_07"
+      ]
+    ]
+  ],
+  "token_open_HHH": [
+    [
+      [
+        "token_open_HHH_01"
+      ]
+    ],
+    [
+      [
+        "token_open_HHH_02"
+      ]
+    ]
+  ],
+  "token_open_HHL": [
+    [
+      [
+        "token_open_HHL_01"
+      ]
+    ],
+    [
+      [
+        "token_open_HHL_02"
+      ]
+    ]
+  ],
+  "token_open_HLH": [
+    [
+      [
+        "token_open_HLH_01"
+      ]
+    ],
+    [
+      [
+        "token_open_HLH_02"
+      ]
+    ]
+  ],
+  "token_open_LHH": [
+    [
+      [
+        "token_open_LHH_01"
+      ]
+    ],
+    [
+      [
+        "token_open_LHH_02"
+      ]
+    ]
+  ],
+  "token_open_LLL": [
+    [
+      [
+        "token_open_LLL_01"
+      ]
+    ],
+    [
+      [
+        "token_open_LLL_02"
+      ]
+    ]
+  ],
+  "token_energy_high": [
+    [
+      [
+        "token_energy_high_01"
+      ]
+    ],
+    [
+      [
+        "token_energy_high_02"
+      ]
+    ],
+    [
+      [
+        "token_energy_high_03"
+      ]
+    ],
+    [
+      [
+        "token_energy_high_04"
+      ]
+    ],
+    [
+      [
+        "token_energy_high_05"
+      ]
+    ],
+    [
+      [
+        "token_energy_high_06"
+      ]
+    ]
+  ],
+  "token_energy_low": [
+    [
+      [
+        "token_energy_low_01"
+      ]
+    ],
+    [
+      [
+        "token_energy_low_02"
+      ]
+    ],
+    [
+      [
+        "token_energy_low_03"
+      ]
+    ],
+    [
+      [
+        "token_energy_low_04"
+      ]
+    ],
+    [
+      [
+        "token_energy_low_05"
+      ]
+    ],
+    [
+      [
+        "token_energy_low_06"
+      ]
+    ]
+  ],
+  "token_mood_high": [
+    [
+      [
+        "token_mood_high_01"
+      ]
+    ],
+    [
+      [
+        "token_mood_high_02"
+      ]
+    ],
+    [
+      [
+        "token_mood_high_03"
+      ]
+    ],
+    [
+      [
+        "token_mood_high_04"
+      ]
+    ],
+    [
+      [
+        "token_mood_high_05"
+      ]
+    ],
+    [
+      [
+        "token_mood_high_06"
+      ]
+    ]
+  ],
+  "token_mood_low": [
+    [
+      [
+        "token_mood_low_01"
+      ]
+    ],
+    [
+      [
+        "token_mood_low_02"
+      ]
+    ],
+    [
+      [
+        "token_mood_low_03"
+      ]
+    ],
+    [
+      [
+        "token_mood_low_04"
+      ]
+    ],
+    [
+      [
+        "token_mood_low_05"
+      ]
+    ],
+    [
+      [
+        "token_mood_low_06"
+      ]
+    ]
+  ],
+  "token_curiosity_high": [
+    [
+      [
+        "token_curiosity_high_01"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_high_02"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_high_03"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_high_04"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_high_05"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_high_06"
+      ]
+    ]
+  ],
+  "token_curiosity_low": [
+    [
+      [
+        "token_curiosity_low_01"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_low_02"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_low_03"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_low_04"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_low_05"
+      ]
+    ],
+    [
+      [
+        "token_curiosity_low_06"
+      ]
+    ]
+  ]
+}
