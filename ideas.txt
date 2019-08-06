@@ -1,0 +1,9 @@
+-Show a modal in the center once the token it's been dragged
+
+-Don't show a modal and just make the coin dissapear
+
+-Don't show a modal, make the coin dissapear and increase the bucket's size and leave it there
+
+-Don't show a modal, make the coin dissapear, increase the bucket's size and then getting back to normal
+
+-Same as above but make it big until Jibo stop talking, and then getting it back to normal (probably more difficult)
