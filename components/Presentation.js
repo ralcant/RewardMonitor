@@ -10,6 +10,7 @@ import {
   // removeOrientationListener as rol
 } from 'react-native-responsive-screen';
 import {floatConversion} from './floatConversion.js'
+import { sleep } from './sleep.js';
 // import RNRestart from 'react-native-restart';
 
 export class Presentation extends React.Component {
@@ -22,16 +23,22 @@ export class Presentation extends React.Component {
       mood_visible: null,
       curiosity_visible: null,
       // modal_shown: false,
-      energy_modal_shown: false,
-      mood_modal_shown: false,
-      curiosity_modal_shown: false,
+      energy_chosen: false,
+      mood_chosen: false,
+      curiosity_chosen: false,
 
       energy_hover: false,
       mood_hover: false,
       curiosity_hover: false,
+
+      show_energy_text: true,
+      show_mood_text: true,
+      show_curiosity_text: true,
     }
     this.stateChange = this.stateChange.bind(this);
-    this.setModalVisible= this.setModalVisible.bind(this)
+    this.hideText= this.hideText.bind(this);
+    this.send_robot_tts_cmd= this.send_robot_tts_cmd.bind(this)
+    // this.setModalVisible= this.setModalVisible.bind(this)
   }
   async componentDidMount() {
     // lor(this); //for changes in orientation
@@ -104,34 +111,40 @@ export class Presentation extends React.Component {
   // componentWillUnmount() {
   //   rol(); //for changes in orientation
   // }
-  // usedCoin = () =>{
-  //   //USE IT IF YOU WANT TO SHOW A MODAL ONCE THE TOKEN IS DRAGGED! 
-  //   if (this.state.number_coins >=1){ //useful for when the number of initial coins is more than 1
-  //     this.setState({
-  //       number_coins: this.state.number_coins-1 //decrease the number of coins present
-  //     });
-  //   } else{
-  //     this.setState({modalVisible: true}) // In case you want to add a modal to show after the drag has been dragged!
-  //     // RNRestart.Restart();
-  //     // console.log("restart?")
-  //   }
-  // }
   stateChange(type){
     console.log(type)
     if (type === "energy" || type === "mood" || type === "curiosity") {
       this.props.stateChange(type);
-      let modal_name = `${type}_modal_shown`;
+      let state_chosen = `${type}_chosen`;
       this.setState({
-        [modal_name]: true,
+        [state_chosen]: true,
       })
     } else{
       console.log("THIS SHOULDNT HAPPEN")
     }
   }
-  setModalVisible(type, visible){
-    this.setState({
-      [`${type}_modal_shown`]: visible
-    })
+  hideText(type){
+    if (type === "energy" || type === "mood" || type === "curiosity") {
+      let text_name = `show_${type}_text`;
+      let state_chosen = `${type}_chosen`;
+
+      this.setState({
+        [text_name]: false,
+        [state_chosen]: true,
+      }, ()=>{
+        this.props.stateChange(type);
+
+        this.setState({
+          [state_chosen]:false,
+        })
+        // await sleep(1000);
+        // this.setState({
+        //   [text_name]: true,
+        // })
+      })
+    } else{
+      console.log("THIS SHOULDNT HAPPEN")
+    }
   }
   hoverChoice = (type, visible) =>{
     if (visible){
@@ -158,10 +171,41 @@ export class Presentation extends React.Component {
     // }
 
   }
+  async send_robot_tts_cmd(type){
+    switch(type){
+      case "energy": {
+        await this.client.send_robot_tts_cmd("I feel more energetic now! Thank you! I think I'll be awake all night.<es name=eye_happy_out_01/><es name=dance_funny_01/>Just kidding, I also need to sleep.");      
+        break;
+      }
+      case "mood": {
+        await this.client.send_robot_tts_cmd("I feel happier now! Thank you! I think I'm going to dance.<es name=dance_funny_00/> How was my dance? I bet you can do it too! ");      
+        break;
+      }
+      case "curiosity": {
+        await this.client.send_robot_tts_cmd("Now I have even more questions on mind! Why is the sky blue? Why is my name pronounced Jibo and no <phoneme ph='dj iy b o'>Jibo</phoneme>?");      
+        break;
+      }
+      default: console.log("IT SHOULDNT GET HERE")
+    }
+  }
+  restart_chosen =()=>{
+    this.setState({
+      energy_chosen: false,
+      mood_chosen: false,
+      curiosity_chosen: false,
+    })
+  }
+  change_showing_text =()=>{
+    this.setState({
+      show_energy_text: true,
+      show_mood_text: true,
+      show_curiosity_text: true,
+    })
+  }
   render() {
 
     // console.log("Presentation.js is rendering!")
-    console.log(`Energy, Mood and curiosity hovers: ${this.state.energy_hover}, ${this.state.mood_hover}, ${this.state.curiosity_hover}`);
+    console.log(`Energy, Mood and curiosity showing texts: ${this.state.show_energy_text}, ${this.state.show_mood_text}, ${this.state.show_curiosity_text}`);
     //if any modal is visible then the opacity of the background would be low
     let opacity=1// (this.state.energy_modal_shown || this.state.mood_modal_shown || this.state.curiosity_modal_shown) ? 0.1 : 1
     console.log('render_presentation_wh:', wp(100), hp(100));
@@ -213,30 +257,43 @@ export class Presentation extends React.Component {
           <View style = {styles.choice_container}>
             <Choice 
               info={{type: "energy", label: energy_integer_level}}
-              is_hovered = {this.state.energy_hover}
-              setModalVisible={this.setModalVisible} 
-              modal_shown= {this.state.energy_modal_shown} 
-              usedCoin= {this.usedCoin} 
+              // is_hovered = {this.state.energy_hover}
+              // setModalVisible={this.setModalVisible} 
+              is_chosen= {this.state.energy_chosen} 
+              // usedCoin= {this.usedCoin} 
               hope = {[CONSTANTS.energy, styles.choice]} 
               is_visible={this.state.energy_visible}
+              show_text={this.state.show_energy_text}
+              send_robot_tts_cmd={this.send_robot_tts_cmd}
+              restart_chosen={this.restart_chosen}
+              change_showing_text={this.change_showing_text}
               />              
               <Choice
               info={{type: "mood", label: mood_integer_level}}
-              is_hovered={this.state.mood_hover}
-              setModalVisible={this.setModalVisible} 
-              modal_shown= {this.state.mood_modal_shown} 
-              usedCoin= {this.usedCoin} 
+              // is_hovered={this.state.mood_hover}
+              // setModalVisible={this.setModalVisible} 
+              is_chosen= {this.state.mood_chosen} 
+              // usedCoin= {this.usedCoin} 
               hope = {[CONSTANTS.mood, styles.choice]} 
               is_visible={this.state.mood_visible}
+              show_text={this.state.show_mood_text}
+              send_robot_tts_cmd={this.send_robot_tts_cmd}
+              restart_chosen={this.restart_chosen}
+              change_showing_text={this.change_showing_text}
+
               />
               <Choice 
               info={{type: "curiosity", label: curiosity_integer_level}} 
-              is_hovered={this.state.curiosity_hover}
-              setModalVisible={this.setModalVisible} 
-              modal_shown= {this.state.curiosity_modal_shown} 
-              usedCoin= {this.usedCoin} 
+              // is_hovered={this.state.curiosity_hover}
+              // setModalVisible={this.setModalVisible} 
+              is_chosen= {this.state.curiosity_chosen} 
+              // usedCoin= {this.usedCoin} 
               hope = {[CONSTANTS.curiosity, styles.choice]} 
               is_visible={this.state.curiosity_visible}
+              show_text={this.state.show_curiosity_text}
+              send_robot_tts_cmd={this.send_robot_tts_cmd}
+              restart_chosen={this.restart_chosen}
+              change_showing_text={this.change_showing_text}
               />
           </View>
           <Coin 
@@ -245,6 +302,7 @@ export class Presentation extends React.Component {
             position = {COINS.coin_1} 
             RADIUS ={RADIUS}
             hoverChoice = {this.hoverChoice}
+            hideText={this.hideText}
           />
         </View>
     );
