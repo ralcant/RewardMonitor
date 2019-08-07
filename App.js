@@ -37,6 +37,7 @@ export default class App extends React.PureComponent {
       is_playing: null,
     }
     this.changeFirst= this.changeFirst.bind(this);
+    this.stateChange= this.stateChange.bind(this);
     /*Necessary here because we are passing this.client in Presentation.js*/ 
     this.client = new RosClient()
     this.client.setupRosbridgeClient();
@@ -70,14 +71,14 @@ export default class App extends React.PureComponent {
     delete this.client //deleting the client. Necessary? Used it correctly?
     // RNExitApp.exitApp(); //for exiting the app
   }
-  stateChange = (type) => { //change state of Jibo
+  async stateChange(type){ //change state of Jibo
     switch(type){
       case "energy": {
         this.setState({
           energy: this.state.energy+1,
           // energy_visible: true,
         });
-        // this.client.send_rinitiaaobot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Energy bucket");      
+        // await this.client.send_robot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Energy bucket");      
         break;
       }
       case "mood": {
@@ -85,7 +86,7 @@ export default class App extends React.PureComponent {
           mood: this.state.mood+1,
           // mood_modal: true,
         });
-        // this.client.send_robot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Mood bucket");      
+        // await this.client.send_robot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Mood bucket");      
         break;
       }
       case "curiosity": {
@@ -93,7 +94,7 @@ export default class App extends React.PureComponent {
           curiosity: this.state.curiosity+1,
           // curiosity_modal: true,
         });
-        // this.client.send_robot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Curiosity bucket");      
+        // await this.client.send_robot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Curiosity bucket");      
         break;
       }
       default: console.log("IT SHOULDNT GET HERE")
