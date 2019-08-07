@@ -15,8 +15,8 @@ export default class Coin extends Component{
         super(props);
         this.state = {
             // pan: new Animated.ValueXY(), //pan is a vector
-            // opacity: 1,//new Animated.Value(1), // for opacity
-            showDraggable: true,
+            scale: new Animated.Value(1), // for scale
+            // showDraggable: true,
             // touched: false,
             movable: true,
             current_hover: null,
@@ -48,43 +48,38 @@ export default class Coin extends Component{
                 //     touched: true,
                 // })
             },
-            onPanResponderMove: (e, gesture) =>{
-                Animated.event([null, {dx: this.pan.x, dy: this.pan.y}])(e, gesture)
-                /*how much has the position changed since
-                begining of the tap*/
+            onPanResponderMove: Animated.event([null, {dx: this.pan.x, dy: this.pan.y}]),
 
-                // let result = this.general_collision(gesture); 
+            // onPanResponderMove: (e, gesture) =>{
+            //     Animated.event([null, {dx: this.pan.x, dy: this.pan.y}])(e, gesture)
+            //     /*how much has the position changed since
+            //     begining of the tap*/
 
-                // if (result){
-                //     console.log(`it's hovering around ${result}!`)
-                //     // this.props.hoverChoice(result, true)
-                // } 
-                // else{
-                //     // this.props.hoverChoice(result, false)
-                // }
-            },
+            //     // let result = this.general_collision(gesture); 
+
+            //     // if (result){
+            //     //     console.log(`it's hovering around ${result}!`)
+            //     //     // this.props.hoverChoice(result, true)
+            //     // } 
+            //     // else{
+            //     //     // this.props.hoverChoice(result, false)
+            //     // }
+            // },
             onPanResponderRelease: (e, gesture) => {
                 // console.log('xd',this.state.pan.getLayout())
                 // this.state.pan.flattenOffset();
-                const result = this.general_collision(gesture);
+                let result = this.general_collision(gesture);
                 if (result){
-                    this.setState({
-                        showDraggable: false,
+                    Animated.timing(this.state.scale, {
+                        toValue: 0,
+                        duration: 300
+                    }).start(()=>{
+                        // console.log(`this.state.scale is ${Object.keys(this.state.scale)}, ${this.state.scale._value}`)
+                        this.props.hideText(result);
+                        // this.setState({showDraggable: false})
                     })
-                    // Animated.timing(this.state.opacity, {
-                    //     toValue: 0,
-                    //     duration: 1000
-                    // }).start()
-                    this.props.hideText(result);
-                    // this.props.stateChange(result);
-                    
-                    // this.props.usedCoin();
-                        // RNRestart.Restart();
+                    // this.props.hideText(result);
                 } else{ //coming back to initial state
-                    // this.state.touched= false
-                    // this.setState({
-                    //     touched: false,
-                    // })
                     Animated.timing(this.pan, { 
                         toValue: { x:0, y:0 },
                         duration: 500,
@@ -166,6 +161,8 @@ export default class Coin extends Component{
     
     general_collision(gesture) {
         // console.log('collision:', wp(100), hp(100))
+        // return "curiosity"
+        // let date_beginning = Date.now()
         const R = this.props.RADIUS
         // console.log(R)
         /*
@@ -181,13 +178,17 @@ export default class Coin extends Component{
         const x_curiosity = wp(50+2.5*R) //CONSTANTS.curiosity.left+ R
 
         const y_choice = hp(100)-wp(R) //THE THREE CHOICES HAVE THE SAME HEIGHT (i.e., y coordinate)
+        // console.log(`The amount of time it took to calculate the variables is ${Date.now()-date_beginning}`)            
         if ((gesture.moveX-x_energy)*(gesture.moveX-x_energy)+(gesture.moveY-y_choice)*(gesture.moveY-y_choice) <= wp(R)* wp(R)){ //if touch is inside energy
+            // console.log(`The amount of time it took to run this was ${Date.now()-date_beginning}`)            
             return "energy";
         }
         if ((gesture.moveX-x_mood)*(gesture.moveX-x_mood)+(gesture.moveY-y_choice)*(gesture.moveY-y_choice) <= wp(R)* wp(R)){ //if touch is inside mood
+            // console.log(`The amount of time it took to run this was ${Date.now()-date_beginning}`)                        
             return "mood";
         }  
         if ((gesture.moveX-x_curiosity)*(gesture.moveX-x_curiosity)+(gesture.moveY-y_choice)*(gesture.moveY-y_choice) <= wp(R)* wp(R)){ //if touch is inside curiosity
+            // console.log(`The amount of time it took to run this was ${Date.now()-date_beginning}`)                        
             return "curiosity";
         }  
         return null
@@ -221,29 +222,30 @@ export default class Coin extends Component{
     render() {
         //
         // let scale = this.state.touched ? 1: 1 //scale will be larger when pressed!
-        let scale= 1
+        // let scale= 1
         //let transform = this.state.pan.getTranslateTransform();
         //console.log(transform)
         console.log("Coin is being rendered!")
         // opacity = 0.5;
-        opacity= this.state.opacity;
-        if (this.state.showDraggable) {
-            if (this.state.movable){
-                console.log("rendering animated image of the coin!")
+        // console.log(this.state.opacity)
+        if (this.state.scale._value !== 0) {
+            if (this.props.movable){
+                // console.log("rendering animated image of the coin!")
                 return (
                     <Animated.Image
                         source = {require('../assets/jibocoin.png')}
                         style={[
                             this.props.position,
-                            {opacity: opacity},
+                            // {opacity: this.state.scale},
                             styles.coin, 
-                            {transform: [...this.pan.getTranslateTransform()]}
+                            {transform: [...this.pan.getTranslateTransform(), {scale: this.state.scale}]}
                         ]}
                         {...this.panResponder.panHandlers}
                     >
                     </Animated.Image>
                 )            
             } else{
+                console.log("it got here :0")
                 return (
                 <Image
                 source={require('../assets/jibocoin.png')}
@@ -256,6 +258,7 @@ export default class Coin extends Component{
             }
 
         } else{
+            // console.log("it shouldnt be rendering anything")
             return null
         }        
     }
