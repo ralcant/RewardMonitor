@@ -21,11 +21,10 @@ export class Choice extends React.Component{
             // modalVisible: false,
         }
         // this.showModal= this.showModal.bind(this);
-        let {type, label} = this.props.info
-        this.image_source = images[type][label].icon;
-        this.text_image= images[type][label].text;
+        this.type = this.props.info.type        
+        // this.image_source = images[type][label].icon;
+        // this.text_image= images[type][label].text;
         this.handleColission= this.handleColission.bind(this);
-
     }
     
     // componentWillUnmount() {
@@ -44,40 +43,64 @@ export class Choice extends React.Component{
         });
     }
     handleColission(toValue){
-        //toValue is the 
-        let {type} = this.props.info;
+        // Animated.sequence([
+        //     Animated.timing(this.state.scale,{
+        //         toValue: toValue,
+        //         duration:1500
+        //     }),
+        //     Animated.spring(this.state.scale,{
+        //         toValue:1,
+        //         duration:500
+        //     })
+        // ]).start(()=>{
+        //     this.props.change_showing_text()
+        //     this.props.send_robot_tts_cmd(this.type);
+        // });
+        // this.props.hide_text(this.type)
+
         Animated.spring(this.state.scale,{
             toValue: toValue,
-            duration:1500
-        }).start(async() => {
-            await this.props.send_robot_tts_cmd(type);
+            duration:1000
+        }).start(() => {
+            // this.props.change_showing_text()
             Animated.spring(this.state.scale,{
                 toValue:1,
-                duration:2000
+                duration:500
             }).start(()=>{
-                // this.props.restart_chosen()
                 this.props.change_showing_text()
+                this.props.send_robot_tts_cmd(this.type);
             });
+            // this.props.change_showing_text()
+            // this.props.send_robot_tts_cmd(type);
+
         });
     }
     render(){
         // console.log("Choice.js is rendering!")
         // let visible = this.props.is_visible ? 1: 0
         // console.log('visibility of this choice is:',visible)
-        console.log(`(width, height)= (${wp(100)},${hp(100)})`);
-        let {type, label} = this.props.info;
-        let image_source = images[type][label].icon;
-        let text_image= images[type][label].text;
-        // let opacity = true ? 0.5: 1;
-        let opacity= 1;
+        // console.log(`(width, height)= (${wp(100)},${hp(100)})`);
         if (this.props.is_chosen){
             this.handleColission(1.5);
             // this.props.send_robot_tts_cmd(type)
         }
+        let {label} = this.props.info;
+        let image_source = images[this.type][label].icon;
+        let text_image= images[this.type][label].text;
+        // let opacity = true ? 0.5: 1;
+        let opacity= 1;
+        // if (this.props.is_chosen){
+        //     this.handleColission(1.5);
+        //     // this.props.send_robot_tts_cmd(type)
+        // }
         // let scale= this.props.modal_shown ? 1.25: this.state.scale;
         // let scale= this.props.is_hovered ? 1.25: this.state.scale;
-        let scale = this.state.scale;
+        // let scale = this.state.scale;
         if (this.props.is_visible){
+            // if (this.props.is_chosen){
+            //     this.handleColission(1.5);
+            // // this.props.send_robot_tts_cmd(type)
+            // }
             return(
                 <View style={{opacity: opacity}}>
                     {/* <ModalChoice 
@@ -93,14 +116,15 @@ export class Choice extends React.Component{
                     {this.props.show_text &&
                     <Image
                     source={text_image}
-                    style={[styles[`${type}_text`], styles.showBorders]}
+                    style={[styles[`${this.type}_text`], styles.showBorders]}
                     />
                     }
                     <Animated.Image 
                     source ={image_source}
                     style = {[
-                        {transform: [{scale: scale}]},
+                        // ,
                         this.props.hope,
+                        {transform: [{scale: this.state.scale}]},
                         styles.showBorders,
                         ]}>
                     </Animated.Image>
