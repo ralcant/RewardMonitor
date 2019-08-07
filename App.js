@@ -71,7 +71,7 @@ export default class App extends React.PureComponent {
     delete this.client //deleting the client. Necessary? Used it correctly?
     // RNExitApp.exitApp(); //for exiting the app
   }
-  async stateChange(type){ //change state of Jibo
+  stateChange(type){ //change state of Jibo
     switch(type){
       case "energy": {
         this.setState({
