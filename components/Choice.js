@@ -19,13 +19,13 @@ export class Choice extends React.Component{
         this.state = {
             scale: new Animated.Value(0),
             // modalVisible: false,
-
         }
         // this.showModal= this.showModal.bind(this);
         let {type, label} = this.props.info
         this.image_source = images[type][label].icon;
         this.text_image= images[type][label].text;
-        this.changeScale= this.changeScale.bind(this);
+        this.handleColission= this.handleColission.bind(this);
+
     }
     
     // componentWillUnmount() {
@@ -33,21 +33,9 @@ export class Choice extends React.Component{
     // }
     componentDidMount() {
         // lor(this);
-        // Animated.spring(this.state.scale,{
-        //     toValue:1.25,
-        //     duration:2000
-        // }).start(() => {
-        //     Animated.spring(this.state.scale,{
-        //         toValue:1,
-        //         duration:2000
-        //     }).start();
-        // });
-        this.changeScale(1.25);
-    }
-    changeScale(toValue){
         Animated.spring(this.state.scale,{
-            toValue: toValue,
-            duration:1500
+            toValue:1.25,
+            duration:2000
         }).start(() => {
             Animated.spring(this.state.scale,{
                 toValue:1,
@@ -55,31 +43,44 @@ export class Choice extends React.Component{
             }).start();
         });
     }
+    handleColission(toValue){
+        //toValue is the 
+        let {type} = this.props.info;
+        Animated.spring(this.state.scale,{
+            toValue: toValue,
+            duration:1500
+        }).start(async() => {
+            await this.props.send_robot_tts_cmd(type);
+            Animated.spring(this.state.scale,{
+                toValue:1,
+                duration:2000
+            }).start(()=>{
+                // this.props.restart_chosen()
+                this.props.change_showing_text()
+            });
+        });
+    }
     render(){
         // console.log("Choice.js is rendering!")
-        let visible = this.props.is_visible ? 1: 0
-        console.log('visibility of this choice is:',visible)
+        // let visible = this.props.is_visible ? 1: 0
+        // console.log('visibility of this choice is:',visible)
         console.log(`(width, height)= (${wp(100)},${hp(100)})`);
         let {type, label} = this.props.info;
         let image_source = images[type][label].icon;
         let text_image= images[type][label].text;
         // let opacity = true ? 0.5: 1;
         let opacity= 1;
-        // let scale;
-        // if (!this.props.modal_shown){
-        //     scale = this.state.scale
-        // }else{
-        //     scale = 1.25
-        // }
-        if (this.props.modal_shown){
-            this.changeScale(1.5);
+        if (this.props.is_chosen){
+            this.handleColission(1.5);
+            // this.props.send_robot_tts_cmd(type)
         }
         // let scale= this.props.modal_shown ? 1.25: this.state.scale;
-        let scale= this.props.is_hovered ? 1.25: this.state.scale;
+        // let scale= this.props.is_hovered ? 1.25: this.state.scale;
+        let scale = this.state.scale;
         if (this.props.is_visible){
             return(
-                <View source={image_source} style={{opacity: opacity}}>
-                    <ModalChoice 
+                <View style={{opacity: opacity}}>
+                    {/* <ModalChoice 
                     image_source={image_source} 
                     text_image = {text_image}
                     message= {"Thank you!"} 
@@ -88,11 +89,13 @@ export class Choice extends React.Component{
                     style={styles.showBorders}                    // style= {styles[`${type}_text`]}
                     setModalVisible={this.props.setModalVisible}
                     type={type}
-                    />
+                    /> */}
+                    {this.props.show_text &&
                     <Image
                     source={text_image}
                     style={[styles[`${type}_text`], styles.showBorders]}
                     />
+                    }
                     <Animated.Image 
                     source ={image_source}
                     style = {[
@@ -100,7 +103,6 @@ export class Choice extends React.Component{
                         this.props.hope,
                         styles.showBorders,
                         ]}>
-        
                     </Animated.Image>
                 </View>
             );
@@ -142,4 +144,3 @@ const styles = StyleSheet.create({
         // borderWidth: 10,
     }
 });
- 
