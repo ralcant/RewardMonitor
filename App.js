@@ -77,7 +77,7 @@ export default class App extends React.PureComponent {
           energy: this.state.energy+1,
           // energy_visible: true,
         });
-        // this.client.send_robot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Energy bucket");      
+        // this.client.send_rinitiaaobot_tts_cmd("<es name=excited_01 nonBlocking='true'/>Token dragged to the Energy bucket");      
         break;
       }
       case "mood": {
