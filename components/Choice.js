@@ -102,7 +102,7 @@ export class Choice extends React.Component{
             // // this.props.send_robot_tts_cmd(type)
             // }
             return(
-                <View style={{opacity: opacity}}>
+                <View>
                     {/* <ModalChoice 
                     image_source={image_source} 
                     text_image = {text_image}
