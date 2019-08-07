@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { ScreenOrientation } from 'expo';
-import { StyleSheet, Text, View, Animated, PanResponder, Dimensions, Easing} from 'react-native';
+import { StyleSheet, Text, View,Image, Animated, PanResponder, Dimensions, Easing} from 'react-native';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -15,10 +15,10 @@ export default class Coin extends Component{
         super(props);
         this.state = {
             // pan: new Animated.ValueXY(), //pan is a vector
-            opacity: new Animated.Value(1), // for opacity
+            // opacity: 1,//new Animated.Value(1), // for opacity
             showDraggable: true,
             // touched: false,
-            state_locked: false,
+            movable: true,
             current_hover: null,
         };
         this.pan = new Animated.ValueXY()
@@ -53,7 +53,7 @@ export default class Coin extends Component{
                 /*how much has the position changed since
                 begining of the tap*/
 
-                let result = this.general_collision(gesture); 
+                // let result = this.general_collision(gesture); 
 
                 // if (result){
                 //     console.log(`it's hovering around ${result}!`)
@@ -68,16 +68,16 @@ export default class Coin extends Component{
                 // this.state.pan.flattenOffset();
                 const result = this.general_collision(gesture);
                 if (result){
-                    Animated.timing(this.state.opacity, {
-                        toValue: 0,
-                        duration: 2000
-                    }).start(() => { //Once opacity = 0, the draggable will not be shown anymore
-                        // this.state.showDraggable= false;
-                        this.setState({
-                        showDraggable: false
-                        })
+                    this.setState({
+                        showDraggable: false,
                     })
-                    this.props.stateChange(result);
+                    // Animated.timing(this.state.opacity, {
+                    //     toValue: 0,
+                    //     duration: 1000
+                    // }).start()
+                    this.props.hideText(result);
+                    // this.props.stateChange(result);
+                    
                     // this.props.usedCoin();
                         // RNRestart.Restart();
                 } else{ //coming back to initial state
@@ -228,7 +228,7 @@ export default class Coin extends Component{
         // opacity = 0.5;
         opacity= this.state.opacity;
         if (this.state.showDraggable) {
-            if (!this.state.locked){
+            if (this.state.movable){
                 console.log("rendering animated image of the coin!")
                 return (
                     <Animated.Image
