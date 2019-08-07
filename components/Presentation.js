@@ -13,31 +13,52 @@ import {floatConversion} from './floatConversion.js'
 import { sleep } from './sleep.js';
 // import RNRestart from 'react-native-restart';
 
-export class Presentation extends React.Component {
+export class Presentation extends React.PureComponent {
   constructor(props){
     super(props);
+    this.client= this.props.client
     this.state = {
-      // number_coins: 1,
-      // modalVisible: false, //uncomment if you want to use modals
-      energy_visible: null,
-      mood_visible: null,
-      curiosity_visible: null,
+      movable: true, //is the coin draggable or not
+      
+      energy_visible: true, 
+      mood_visible: true,
+      curiosity_visible: true,
+
       // modal_shown: false,
       energy_chosen: false,
       mood_chosen: false,
       curiosity_chosen: false,
 
-      energy_hover: false,
-      mood_hover: false,
-      curiosity_hover: false,
+      // energy_hover: false,
+      // mood_hover: false,
+      // curiosity_hover: false,
 
       show_energy_text: true,
       show_mood_text: true,
       show_curiosity_text: true,
+
     }
-    this.stateChange = this.stateChange.bind(this);
+    // if (!this.props.is_first){
+    //   this.state.energy_visible= true;
+    //   this.state.mood_visible= true;
+    //   this.state.curiosity_visible = true;
+    //   this.state.movable = true;
+    // }else{
+    //   this.client.send_robot_tts_cmd("<es name=Emoji_Clap nonBlocking='true'/> Excellent Job <pID_name>! <break size='0.5'/> Everytime that you finish an activity you will win a token! You can use this token to help me.".replace("<pID_name>", "Jon"))
+
+    //   this.state.energy_visible= false;
+    //   this.state.mood_visible= false;
+    //   this.state.curiosity_visible= false;
+    //   this.state.movable= false;
+    // }
+
+
+
+    // this.stateChange = this.stateChange.bind(this);
     this.hideText= this.hideText.bind(this);
     this.send_robot_tts_cmd= this.send_robot_tts_cmd.bind(this)
+    this.change_showing_text = this.change_showing_text.bind(this)
+
     // this.setModalVisible= this.setModalVisible.bind(this)
   }
   async componentDidMount() {
@@ -45,22 +66,25 @@ export class Presentation extends React.Component {
     this.client = this.props.client     
     if (!this.props.is_first){
       //this setState will make render() show the three coins!
-
+      console.log("setting up...")
       //TODO: make Jibo say one of the Jibo openings
-      this.setState({
-        energy_visible: true,
-        mood_visible: true,
-        curiosity_visible: true,
-      });
-      //TODO: need to change the is_first from the database
+      // await this.client.send_robot_tts_cmd("oh hello")
+
+      // this.setState({
+      //   energy_visible: true,
+      //   mood_visible: true,
+      //   curiosity_visible: true,
+      //   movable: true,
+      // });
+      //TODO: need to change the is_first from the database, is it okayt to change it now?
     } else{
       //This SetState will call render --> componentDidUpdate -->   
       await this.client.send_robot_tts_cmd("<es name=Emoji_Clap nonBlocking='true'/> Excellent Job <pID_name>! <break size='0.5'/> Everytime that you finish an activity you will win a token! You can use this token to help me.".replace("<pID_name>", "Jon"))
-
       this.setState({
         energy_visible: false,
         mood_visible: false,
         curiosity_visible: false,
+        movable: false,
       })
     }
   }
@@ -68,18 +92,10 @@ export class Presentation extends React.Component {
     let en_visible= this.state.energy_visible;
     let mo_visible = this.state.mood_visible;
     let cu_visible = this.state.curiosity_visible;
-    console.log('States now: (energy, mood, curiosity)',en_visible, mo_visible,cu_visible);
+    // console.log('States now: (energy, mood, curiosity)',en_visible, mo_visible,cu_visible);
     if (this.props.is_first){
       if (!en_visible && !mo_visible && !cu_visible){
-        //make Jibo talk, don't call this.setState until AFTER jibo finished talking
-        //below works but requires an specific time, not recommendable
-        // setTimeout(()=>{
-        //   this.props.firstEnergy();
-        //   this.setState({
-        //     energy_visible: true,
-        //   })
-        // }, 2000)
-  
+        //make Jibo talk, don't call this.setState until AFTER jibo finished talking  
         console.log("into first if")
         this.setState({
           energy_visible: true
@@ -104,6 +120,10 @@ export class Presentation extends React.Component {
       if (en_visible && mo_visible && cu_visible){
         await this.client.send_robot_tts_cmd("Finally, if you drag the token to the CURIOSITY bucket, I will become more curious. Also, I will <es name=Emoji_Question nonBlocking='true'/>ask many questions, which is important <es name=Emoji_School nonBlocking='true'/>for learning new things!."); 
         this.props.changeFirst()
+        this.setState({
+          movable: true, //to change it to an animated coin
+        })
+
       }
     }
 
@@ -111,57 +131,61 @@ export class Presentation extends React.Component {
   // componentWillUnmount() {
   //   rol(); //for changes in orientation
   // }
-  stateChange(type){
-    console.log(type)
-    if (type === "energy" || type === "mood" || type === "curiosity") {
-      this.props.stateChange(type);
-      let state_chosen = `${type}_chosen`;
-      this.setState({
-        [state_chosen]: true,
-      })
-    } else{
-      console.log("THIS SHOULDNT HAPPEN")
-    }
-  }
+  // stateChange(type){
+  //   console.log(type)
+  //   if (type === "energy" || type === "mood" || type === "curiosity") {
+  //     this.props.stateChange(type);
+  //     let state_chosen = `${type}_chosen`;
+  //     this.setState({
+  //       [state_chosen]: true,
+  //     })
+  //   } else{
+  //     console.log("THIS SHOULDNT HAPPEN")
+  //   }
+  // }
+  // shouldComponentUpdate(){
+  //   console.log(`Chosen, visible, text: ${this.state.curiosity_chosen}, ${this.state.curiosity_visible}, ${this.state.show_curiosity_text}`)
+  //   return true
+  // }
   hideText(type){
     if (type === "energy" || type === "mood" || type === "curiosity") {
-      let text_name = `show_${type}_text`;
+      let text_name = `show_${type}_text`; 
       let state_chosen = `${type}_chosen`;
+      // console.log("calling this dunction another time!")
+      // this.props.stateChange(type);
 
       this.setState({
-        [text_name]: false,
-        [state_chosen]: true,
+        [text_name]: false, //text underneath won't be shown!
+        [state_chosen]: true, // icon will increase size
       }, ()=>{
         this.props.stateChange(type);
-
+        
         this.setState({
+          // [text_name]: true, //text underneath won't be shown!        
           [state_chosen]:false,
         })
-        // await sleep(1000);
-        // this.setState({
-        //   [text_name]: true,
-        // })
+        // this.props.stateChange(type); 
       })
     } else{
       console.log("THIS SHOULDNT HAPPEN")
     }
   }
-  hoverChoice = (type, visible) =>{
-    if (visible){
-      if (!this.state[`${type}_hover`]){
-        this.setState({
-          [`${type}_hover`]: visible,
-        })
-      }
-    }else{
-      if (this.state.energy_hover || this.state.mood_hover || this.state.curiosity_hover){
-        this.setState({
-          energy_hover: false,
-          mood_hover: false,
-          curiosity_hover: false,
-        })
-      }
-    }
+  // hoverChoice = (type, visible) =>{
+  //   if (visible){
+  //     if (!this.state[`${type}_hover`]){
+  //       this.setState({
+  //         [`${type}_hover`]: visible,
+  //       })
+  //     }
+  //   }else{
+  //     if (this.state.energy_hover || this.state.mood_hover || this.state.curiosity_hover){
+  //       this.setState({
+  //         energy_hover: false,
+  //         mood_hover: false,
+  //         curiosity_hover: false,
+  //       })
+  //     }
+  //   }
     // }else{
     //   this.setState({
     //     energy_hover: false,
@@ -170,45 +194,52 @@ export class Presentation extends React.Component {
     //   })
     // }
 
-  }
+  // }
   async send_robot_tts_cmd(type){
     switch(type){
       case "energy": {
-        await this.client.send_robot_tts_cmd("I feel more energetic now! Thank you! I think I'll be awake all night.<es name=eye_happy_out_01/><es name=dance_funny_01/>Just kidding, I also need to sleep.");      
+        // await this.client.send_robot_tts_cmd("I feel more energetic now! Thank you! I think I'll be awake all night.<es name=eye_happy_out_01/><es name=dance_funny_01/>Just kidding, I also need to sleep.");      
         break;
       }
       case "mood": {
-        await this.client.send_robot_tts_cmd("I feel happier now! Thank you! I think I'm going to dance.<es name=dance_funny_00/> How was my dance? I bet you can do it too! ");      
+        // await this.client.send_robot_tts_cmd("I feel happier now! Thank you! I think I'm going to dance.<es name=dance_funny_00/> How was my dance? I bet you can do it too! ");      
         break;
       }
       case "curiosity": {
-        await this.client.send_robot_tts_cmd("Now I have even more questions on mind! Why is the sky blue? Why is my name pronounced Jibo and no <phoneme ph='dj iy b o'>Jibo</phoneme>?");      
+        // await this.client.send_robot_tts_cmd("Now I have even more questions on mind! Why is the sky blue? Why is my name pronounced Jibo and no <phoneme ph='dj iy b o'>Jibo</phoneme>?");      
         break;
       }
       default: console.log("IT SHOULDNT GET HERE")
     }
   }
   restart_chosen =()=>{
-    this.setState({
-      energy_chosen: false,
-      mood_chosen: false,
-      curiosity_chosen: false,
-    })
+    // this.setState({
+    //   energy_chosen: false,
+    //   mood_chosen: false,
+    //   curiosity_chosen: false,
+    // })
   }
-  change_showing_text =()=>{
+  change_showing_text(){
     this.setState({
       show_energy_text: true,
       show_mood_text: true,
       show_curiosity_text: true,
     })
   }
+  hide_text = (type)=>{
+    let text_name = `show_${type}_text`; 
+
+    this.setState({
+      [text_name]: false
+    })
+  }
   render() {
 
-    // console.log("Presentation.js is rendering!")
-    console.log(`Energy, Mood and curiosity showing texts: ${this.state.show_energy_text}, ${this.state.show_mood_text}, ${this.state.show_curiosity_text}`);
+    console.log("Presentation.js is rendering!")
+    // console.log(`Energy, Mood and curiosity showing texts: ${this.state.show_energy_text}, ${this.state.show_mood_text}, ${this.state.show_curiosity_text}`);
     //if any modal is visible then the opacity of the background would be low
     let opacity=1// (this.state.energy_modal_shown || this.state.mood_modal_shown || this.state.curiosity_modal_shown) ? 0.1 : 1
-    console.log('render_presentation_wh:', wp(100), hp(100));
+    // console.log('render_presentation_wh:', wp(100), hp(100));
 
   // const COINS = {
   //     coin_1: {
@@ -294,6 +325,7 @@ export class Presentation extends React.Component {
               send_robot_tts_cmd={this.send_robot_tts_cmd}
               restart_chosen={this.restart_chosen}
               change_showing_text={this.change_showing_text}
+              hide_text ={this.hide_text}
               />
           </View>
           <Coin 
@@ -303,6 +335,7 @@ export class Presentation extends React.Component {
             RADIUS ={RADIUS}
             hoverChoice = {this.hoverChoice}
             hideText={this.hideText}
+            movable={this.state.movable}
           />
         </View>
     );
