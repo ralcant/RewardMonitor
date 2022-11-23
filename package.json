@@ -13,7 +13,7 @@
     "react-native-draggable": "^1.0.15",
     "react-native-exit-app": "^1.0.0",
     "react-native-responsive-screen": "^1.2.2",
-    "roslib": "^1.0.1"
+    "roslib": "^1.3.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
